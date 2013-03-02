@@ -29,6 +29,7 @@ int main () {
 
 		// check how many each side won
 		for (int j = 0; j != 2; ++j) {
+			// if == then loses also
 			if (attacker[j] > defender[j]) {
 				wins++;
 			} else {

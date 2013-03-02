@@ -10,8 +10,24 @@ void dice::setValue(int value) {
 }
 
 void dice::setRandom() {
-	valueOfDie = int (rand() / double(RAND_MAX) * 6.0);
-	valueOfDie++; // outputs in the range [1,6]
+	double temp = rand() / double(RAND_MAX);
+	double sliceSize = 1.0 / 6;
+
+	valueOfDie = -1;
+
+	for (int i = 0; i != 6; ++i) {
+		if ((temp > sliceSize*i) && (temp < sliceSize*(i+1))) {
+			valueOfDie = i+1;
+			break;
+		}
+	}
+
+	if (valueOfDie == -1) {
+		// if we somehow happen to hit right on the edge
+		valueOfDie = 4;
+		// ^^ very random;
+	}
+
 }
 
 int dice::getValue() {
