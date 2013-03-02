@@ -8,7 +8,7 @@ claytonrogers53@gmail.com
 */
 #include "RiskDice.h"
 
-const int ITER = 100;
+const int ITER = 100000;
 
 
 int main () {
