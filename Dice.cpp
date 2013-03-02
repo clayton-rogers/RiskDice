@@ -11,6 +11,7 @@ void dice::setValue(int value) {
 
 void dice::setRandom() {
 	valueOfDie = int (rand() / double(RAND_MAX) * 6.0);
+	valueOfDie++; // outputs in the range [1,6]
 }
 
 int dice::getValue() {
