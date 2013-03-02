@@ -8,8 +8,8 @@ claytonrogers53@gmail.com
 */
 #include "RiskDice.h"
 
-const int MONTE_ITER = 100000;
-const int ITER = 100;
+const int MONTE_ITER = 10000000;
+const int ITER = 1;
 bool firstWrite = true;
 
 
