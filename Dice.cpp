@@ -27,7 +27,6 @@ void dice::setRandom() {
 		valueOfDie = 4;
 		// ^^ very random;
 	}
-
 }
 
 int dice::getValue() {
@@ -37,7 +36,7 @@ int dice::getValue() {
 dice::dice (int value) {
 	if (!randomInitialized) {
 		srand(unsigned int(time(NULL)));
-		randomInitialized = false;
+		randomInitialized = true;
 	}
 	if (value < 1 || value > 6) {
 		value = -1;
