@@ -19,14 +19,17 @@ double runMonte(int attackerDice, int defenderDice);
 
 int main () {
 
-	double results = 0;
 	FILE* fp;
 
 	fp = std::fopen(filename, "w");
-	for (int i = 0; i < 8; i++) {
-		//fprintf(fp, "%d:%f   ", i, double(buckets[i])/NUM);
+	if (fp == NULL) {return 1;}
+	fprintf(fp, "Attackers  Defenders   %% Win\n");
+	for (int attackers = 1; attackers <=3; attackers++) {
+		for (int defenders = 1; defenders <=2; defenders++) {
+			fprintf(fp, "%d          %d           %f\n", 
+				attackers, defenders, runMonte(attackers, defenders));
+		}
 	}
-	fprintf(fp, "\n");
 	
 	return 0;
 }
