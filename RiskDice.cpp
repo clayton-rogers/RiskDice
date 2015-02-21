@@ -5,6 +5,7 @@ the results to file.
 
 Mar 2013 - Clayton Rogers
 claytonrogers53@gmail.com
+Feb 2015 - Clayton Rogers - updated output to include all of the die combinations
 */
 #include "RiskDice.h"
 
@@ -31,7 +32,7 @@ int main () {
 
 void sortDice (dice dies[], int n) {
 	bool isSorted = false;
-	dice extra;
+	dice extra(1);
 
 	while (!isSorted) {
 		isSorted = true;
@@ -47,7 +48,7 @@ void sortDice (dice dies[], int n) {
 }
 
 double runMonte() {
-	dice attacker[3], defender[2];
+	dice attacker[3] = {1,1,1}, defender[2] = {1,1};
 	int loses(0), wins(0);  // loss is an attacker losing, win is attacker winning
 	FILE* fp;
 	int numAttacks(0);
