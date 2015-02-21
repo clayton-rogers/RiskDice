@@ -34,11 +34,17 @@ int main () {
 void sortDice (Dice dies[], int n) {
 	bool isSorted = false;
 	Dice extra;
-	extra.setValue(1);
+
+	if (n < 1) {
+		throw "Cannot sort none or negative dice.";
+	}
+	if (n == 1) {
+		return;
+	}
 
 	while (!isSorted) {
 		isSorted = true;
-		for (int i = 0; i != n-1; ++i) {
+		for (int i = 0; i < n-1; ++i) {
 			if (dies[i] < dies [i+1]) {
 				extra = dies[i];
 				dies[i] = dies[i+1];
