@@ -3,45 +3,21 @@
 
 void Dice::setValue(int value) {
 	if (value < 1 || value > 6) {
-		value = -1;
-
+		throw "Dice value must be [1,6] (inclusive of both)";
 	}
 	valueOfDie = value;
 }
 
 void Dice::setRandom() {
-	double temp = rand() / double(RAND_MAX);
-	double sliceSize = 1.0 / 6;
-
-	valueOfDie = -1;
-
-	for (int i = 0; i != 6; ++i) {
-		if ((temp > sliceSize*i) && (temp < sliceSize*(i+1))) {
-			valueOfDie = i+1;
-			break;
-		}
-	}
-
-	if (valueOfDie == -1) {
-		// if we somehow happen to hit right on the edge
-		valueOfDie = 4;
-		// ^^ very random;
-	}
+	valueOfDie = rand() % 6 + 1;
 }
 
 int Dice::getValue() {
 	return valueOfDie;
 }
 
-Dice::Dice (int value) {
-	if (!randomInitialized) {
-		srand(unsigned int(time(NULL)));
-		randomInitialized = true;
-	}
-	if (value < 1 || value > 6) {
-		value = -1;
-	}
-	valueOfDie = value;
+Dice::Dice () {
+	valueOfDie = 1;
 }
 
 bool Dice::randomInitialized = false;

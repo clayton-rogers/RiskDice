@@ -32,7 +32,8 @@ int main () {
 
 void sortDice (Dice dies[], int n) {
 	bool isSorted = false;
-	Dice extra(1);
+	Dice extra;
+	extra.setValue(1);
 
 	while (!isSorted) {
 		isSorted = true;

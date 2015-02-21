@@ -5,15 +5,16 @@ This class can be used to simulate a single die
 #ifndef _Dice
 #define _Dice
 
-#include <cstdlib>        // for making a random dice roll
-#include <ctime>          // for initialization of rand()
+#include <cstdlib>     // for making a random dice roll
+#include <cstdlib>     // for rand()
+#include <ctime>       // to seed the random generator
 
 class Dice {
 public:
 	void setValue(int);   // allows the setting of the value of the die, if the value is out of bounds, it is set to -1
 	void setRandom();     // sets the die to a random value
 	int getValue();       // returns the current value of the die
-	Dice(int value);
+	Dice();
 	bool operator> (Dice);
 	bool operator< (Dice);
 	bool operator== (Dice);
