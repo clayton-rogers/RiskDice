@@ -55,33 +55,45 @@ void sortDice (Dice dies[], int n) {
 	}
 }
 
-double runMonte() {
-	Dice attacker[3] = {1,1,1}, defender[2] = {1,1};
-	int loses(0), wins(0);  // loss is an attacker losing, win is attacker winning
-	int numAttacks(0);
+double runMonte(int attackerDice, int defenderDice) {
+	if (attackerDice < 1 ||
+		attackerDice > 3 ||
+		defenderDice < 1 ||
+		defenderDice > 2) {
+			throw "Illegal number of dice to be tested";
+	}
+
+	Dice* attacker = new Dice[attackerDice];
+	Dice* defender = new Dice[defenderDice];
+
+	int wins(0);        // Number of attacker wins
+	int attacks(0);
 
 	for (int i = 0; i != MONTE_ITER; ++i) {
 		// get all random dice and sort them
-		for (int j = 0; j !=3; ++j) {
+		for (int j = 0; j <=attackerDice; ++j) {
 			attacker[j].setRandom();
 		}
-		for (int j = 0; j !=2; ++j) {
+		for (int j = 0; j <=defenderDice; ++j) {
 			defender[j].setRandom();
 		}
-		sortDice(attacker, 3);
-		sortDice(defender, 2);
+		sortDice(attacker, attackerDice);
+		sortDice(defender, defenderDice);
 
-		// check how many each side won
-		for (int j = 0; j != 2; ++j) {
-			// if == then loses also
-			++numAttacks;
+		int attacksToResolve;
+		if (attackerDice > 1 &&
+			defenderDice > 1) {
+			attacksToResolve = 2;
+		} else {
+			attacksToResolve = 1;
+		}
+		for (int j = 0; j < attacksToResolve; ++j) {
+			attacks++;
 			if (attacker[j] > defender[j]) {
 				wins++;
-			} else {
-				loses++;
 			}
 		}
 	}
 
-	return double(wins)/numAttacks;
+	return double(wins)/attacks;
 }
