@@ -10,23 +10,24 @@ Feb 2015 - Clayton Rogers - updated output to include all of the die combination
 #include "RiskDice.h"
 
 const int MONTE_ITER = 10000000;
-const int ITER = 1;
+const char filename[] = "output.dat";
 bool firstWrite = true;
+
+void sortDice (Dice dies[], int n); // sorts 'n' dies
+double runMonte(int attackerDice, int defenderDice);
 
 
 int main () {
 
-	double results(0);
+	double results = 0;
 	FILE* fp;
 
-	for (int i = 0; i != ITER; ++i) {
-		results += runMonte();
+	fp = std::fopen(filename, "w");
+	for (int i = 0; i < 8; i++) {
+		//fprintf(fp, "%d:%f   ", i, double(buckets[i])/NUM);
 	}
-
-	results /= ITER;
-	fp = fopen("output.dat", "a");
-	fprintf(fp, "Win % = %f\n", results);
-
+	fprintf(fp, "\n");
+	
 	return 0;
 }
 
@@ -51,7 +52,6 @@ void sortDice (Dice dies[], int n) {
 double runMonte() {
 	Dice attacker[3] = {1,1,1}, defender[2] = {1,1};
 	int loses(0), wins(0);  // loss is an attacker losing, win is attacker winning
-	FILE* fp;
 	int numAttacks(0);
 
 	for (int i = 0; i != MONTE_ITER; ++i) {
@@ -76,16 +76,6 @@ double runMonte() {
 			}
 		}
 	}
-
-	// output the data to file (clear it if it is the first run)
-	if (firstWrite) {
-		fp = fopen("output.dat", "w");
-		firstWrite = false;
-	} else {
-		fp = fopen("output.dat", "a");
-	}
-	fprintf(fp, "%d   %d   %d   %f\n", numAttacks, wins, loses, double(wins) / numAttacks);
-	fclose(fp);
 
 	return double(wins)/numAttacks;
 }
