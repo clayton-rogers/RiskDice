@@ -9,7 +9,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS // cause fopen is just fine
 
-void sortDice (dice dies[], int n); // sorts 'n' dies
+void sortDice (Dice dies[], int n); // sorts 'n' dies
 double runMonte();
 
 

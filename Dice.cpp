@@ -1,7 +1,7 @@
 #include "Dice.h"
 
 
-void dice::setValue(int value) {
+void Dice::setValue(int value) {
 	if (value < 1 || value > 6) {
 		value = -1;
 
@@ -9,7 +9,7 @@ void dice::setValue(int value) {
 	valueOfDie = value;
 }
 
-void dice::setRandom() {
+void Dice::setRandom() {
 	double temp = rand() / double(RAND_MAX);
 	double sliceSize = 1.0 / 6;
 
@@ -29,11 +29,11 @@ void dice::setRandom() {
 	}
 }
 
-int dice::getValue() {
+int Dice::getValue() {
 	return valueOfDie;
 }
 
-dice::dice (int value) {
+Dice::Dice (int value) {
 	if (!randomInitialized) {
 		srand(unsigned int(time(NULL)));
 		randomInitialized = true;
@@ -44,16 +44,16 @@ dice::dice (int value) {
 	valueOfDie = value;
 }
 
-bool dice::randomInitialized = false;
+bool Dice::randomInitialized = false;
 
-bool dice::operator> (dice otherDie) {
+bool Dice::operator> (Dice otherDie) {
 	return (valueOfDie > otherDie.valueOfDie);
 }
 
-bool dice::operator< (dice otherDie) {
+bool Dice::operator< (Dice otherDie) {
 	return (valueOfDie < otherDie.valueOfDie);
 }
 
-bool dice::operator== (dice otherDie) {
+bool Dice::operator== (Dice otherDie) {
 	return (valueOfDie == otherDie.valueOfDie);
 }
